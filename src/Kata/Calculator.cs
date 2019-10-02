@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Kata
 {
     public class Calculator
@@ -7,7 +9,15 @@ namespace Kata
             if(string.IsNullOrEmpty(number))
                 return 0;
 
-            return 3;
+            var numberArray = number.Split(',').Select(numberString => int.Parse(numberString)).ToArray();
+            if (numberArray.Length > 1)
+            {
+                int sum = numberArray[0] + numberArray[1];
+                return sum;
+            }
+
+            return numberArray[0];
+
         }
         
         
