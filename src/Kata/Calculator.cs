@@ -2,9 +2,11 @@ namespace Kata
 {
     public class Calculator
     {
-        public int Add()
+        public int Add(string number = "")
         {
-            return -1;
+            return 0;
         }
+        
+        
     }
 }
