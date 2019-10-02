@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Kata
@@ -9,8 +10,19 @@ namespace Kata
             if(string.IsNullOrEmpty(number))
                 return 0;
 
-            var numberArray = number.Split(',').Select(numberString => int.Parse(numberString)).ToArray();
-            return numberArray.Sum();
+            char delimiter;
+            if (number.StartsWith("//"))
+            {
+                var newNumberArray = number.Remove(0, 2).Split('\n'); // Removes the first two "//"
+                delimiter = Convert.ToChar(newNumberArray[0]);
+                newNumberArray = newNumberArray[1].Split(delimiter);
+                return newNumberArray.Sum(numberString => int.Parse(numberString));
+            }
+            
+            var numberArray = number.Split(',', '\n').Select(numberString => int.Parse(numberString)).ToArray();
+            return numberArray.Sum(); 
+            
+            
 
         }
         
